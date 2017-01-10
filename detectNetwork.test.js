@@ -166,12 +166,19 @@ describe('Discover', function() {
 
 describe('Maestro', function() {
   // Write full test coverage for the Maestro card
+  var prefixes = ['5018', '5020', '5038', '6304'];
+  for (var i = 0; i < prefixes.length; i++) {
+    let prefix = prefixes[i];
+    for (var len = 12; len <= 19; len++) {
+      let rest = '0123456789012345'.slice(0, len - 4);
+      (function(prefix) {
+        it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
+          detectNetwork(prefix + rest).should.equal('Maestro');
+        });
+      })(prefix)
+    }
+  }
 });
 
 describe('should support China UnionPay')
 describe('should support Switch')
-
-
-
-
-

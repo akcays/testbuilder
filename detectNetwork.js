@@ -31,11 +31,9 @@ var detectNetwork = function(cardNumber) {
   else if ((len === 16 || len === 19) && (prefix(4) === "6011" || prefix(2) === "65" || (Number(prefix(3)) > 643 && Number(prefix(3)) < 650))) {
     return "Discover";
   }
-  else if ((len === 12 || len === 19) && (prefix(4) === "5018" || prefix(4) === "5020" || prefix(4) === "5038" || prefix(4) === "6304")) {
+  else if ((len >= 12 && len <= 19) && (prefix(4) === "5018" || prefix(4) === "5020" || prefix(4) === "5038" || prefix(4) === "6304")) {
     return "Maestro";
   }
 };
 
 
-// Discover always has a prefix of 6011, 644, 645, 646, 647, 648, 649, or 65, and a length of 16 or 19.
-// Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
