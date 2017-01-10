@@ -186,7 +186,7 @@ describe('should support China UnionPay', function() {
       let rest = '0123456789012'.slice(0, len - 6);
       (function(prefix) {
         it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
-          detectNetwork(prefix + rest).should.equal('China Union Pay');
+          detectNetwork(prefix + rest).should.equal('China UnionPay');
         });
       })(prefix)
     }
@@ -196,7 +196,7 @@ describe('should support China UnionPay', function() {
       let rest = '0123456789012'.slice(0, len - 4);
       (function(prefix) {
         it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
-          detectNetwork(prefix + rest).should.equal('China Union Pay');
+          detectNetwork(prefix + rest).should.equal('China UnionPay');
         });
       })(prefix)
     }
@@ -206,7 +206,7 @@ describe('should support China UnionPay', function() {
       let rest = '0123456789012'.slice(0, len - 3);
       (function(prefix) {
         it('has a prefix of ' + prefix + ' and a length of ' + len, function() {
-          detectNetwork(prefix + rest).should.equal('China Union Pay');
+          detectNetwork(prefix + rest).should.equal('China UnionPay');
         });
       })(prefix)
     }

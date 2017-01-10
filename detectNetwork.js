@@ -32,7 +32,7 @@ var detectNetwork = function(cardNumber) {
     return 'Maestro';
   }
   else if ((len >= 16 && len <= 19) && ((Number(prefix(6)) <= 622925 && Number(prefix(6)) >= 622126) || (Number(prefix(4)) <= 6288 && Number(prefix(4)) >= 6282) || (Number(prefix(3)) <= 626 && Number(prefix(3)) >= 624))) {
-    return 'China Union Pay';
+    return 'China UnionPay';
   }
   else if ((len === 16 || len === 18 || len === 19) && (prefix(4) === '4903' || prefix(4) === '4905' || prefix(4) === '4911' || prefix(4) === '4936' || prefix(4) === '6333' || prefix(4) === '6759' || prefix(6) === '564182' || prefix(6) === '633110')) {
     return 'Switch';
