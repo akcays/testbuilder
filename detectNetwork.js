@@ -16,24 +16,31 @@ var detectNetwork = function(cardNumber) {
   var len = cardNumber.length;
   var prefix = n => cardNumber.slice(0, n);
   
-  if (len === 14 && (prefix(2) === "38" || prefix(2) === "39")) {
-    return "Diner's Club";
+  if (len === 14 && (prefix(2) === '38' || prefix(2) === '39')) {
+    return 'Diner\'s Club';
   } 
-  else if (len === 15 && (prefix(2) === "34" || prefix(2) === "37")) {
-    return "American Express";
+  else if (len === 15 && (prefix(2) === '34' || prefix(2) === '37')) {
+    return 'American Express';
   }
-  else if ((len === 13 || len === 16 || len === 19) && prefix(1) === "4") {
-    return "Visa";
+  else if ((prefix(2) === '51' || prefix(2) === '52' || prefix(2) === '53' || prefix(2) === '54' || prefix(2) === '55') && len === 16) {
+    return 'MasterCard';
   }
-  else if ((prefix(2) === "51" || prefix(2) === "52" || prefix(2) === "53" || prefix(2) === "54" || prefix(2) === "55") && len === 16) {
-    return "MasterCard";
+  else if ((len === 16 || len === 19) && (prefix(4) === '6011' || prefix(2) === '65' || (Number(prefix(3)) > 643 && Number(prefix(3)) < 650))) {
+    return 'Discover';
   }
-  else if ((len === 16 || len === 19) && (prefix(4) === "6011" || prefix(2) === "65" || (Number(prefix(3)) > 643 && Number(prefix(3)) < 650))) {
-    return "Discover";
+  else if ((len >= 12 && len <= 19) && (prefix(4) === '5018' || prefix(4) === '5020' || prefix(4) === '5038' || prefix(4) === '6304')) {
+    return 'Maestro';
   }
-  else if ((len >= 12 && len <= 19) && (prefix(4) === "5018" || prefix(4) === "5020" || prefix(4) === "5038" || prefix(4) === "6304")) {
-    return "Maestro";
+  else if ((len >= 16 && len <= 19) && ((Number(prefix(6)) <= 622925 && Number(prefix(6)) >= 622126) || (Number(prefix(4)) <= 6288 && Number(prefix(4)) >= 6282) || (Number(prefix(3)) <= 626 && Number(prefix(3)) >= 624))) {
+    return 'China Union Pay';
+  }
+  else if ((len === 16 || len === 18 || len === 19) && (prefix(4) === '4903' || prefix(4) === '4905' || prefix(4) === '4911' || prefix(4) === '4936' || prefix(4) === '6333' || prefix(4) === '6759' || prefix(6) === '564182' || prefix(6) === '633110')) {
+    return 'Switch';
+  }
+  else if ((len === 13 || len === 16 || len === 19) && prefix(1) === '4') {
+    return 'Visa';
   }
 };
 
-
+// China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19
+// Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19
